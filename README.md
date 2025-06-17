@@ -18,7 +18,7 @@ Proyek ini melakukan analisis sentimen pada kumpulan data ulasan produk dari pla
 
 ## Latar Belakang
 
-Ulasan pelanggan adalah sumber informasi yang kaya mengenai pengalaman dan preferensi konsumen terhadap suatu produk atau layanan. Analisis sentimen memungkinkan kita untuk secara otomatis mengidentifikasi dan mengekstrak opini (positif, negatif, netral) dari teks-teks ulasan, yang dapat memberikan wawasan berharga bagi bisnis untuk pengambilan keputusan, peningkatan produk, dan strategi pemasaran.
+Ulasan pelanggan adalah sumber informasi yang kaya mengenai pengalaman dan preferensi konsumen terhadap suatu produk atau layanan. Analisis sentimen memungkinkan kita untuk secara otomatis mengidentifikasi dan mengekstrak opini (positif, negatif) dari teks-teks ulasan, yang dapat memberikan wawasan berharga bagi bisnis untuk pengambilan keputusan, peningkatan produk, dan strategi pemasaran.
 
 ## Tujuan Proyek
 
@@ -29,11 +29,11 @@ Tujuan utama dari proyek ini adalah:
 
 ## Dataset
 
-Dataset yang digunakan dalam proyek ini berisi ulasan produk dari e-commerce. Kolom utama yang digunakan adalah:
+Dataset yang digunakan dalam proyek ini berisi 1925 ulasan produk dari e-commerce. Kolom utama yang digunakan adalah:
 -   `Ulasan`: Berisi teks ulasan pelanggan.
--   `label`: Berisi label sentimen yang sudah ditentukan (misalnya, 0 untuk negatif/netral, 1 untuk positif).
+-   `label`: Berisi label sentimen yang sudah ditentukan (misalnya, 0 untuk negatif, 1 untuk positif).
 
-*Catatan: Dataset ini seharusnya ditempatkan di dalam folder `data/` di root proyek ini. Jika dataset berukuran besar, disarankan untuk tidak mengunggahnya ke GitHub dan memberikan tautan unduhan di sini.*
+*Catatan: Dataset ini seharusnya ditempatkan di dalam folder `data/` di root proyek ini
 
 ## Metodologi
 
@@ -43,10 +43,9 @@ Langkah-langkah pra-pemrosesan teks dilakukan untuk membersihkan dan menstandari
 1.  **Penanganan Missing Values:** Mengisi ulasan kosong dengan nilai 'tidak ada komentar'.
 2.  **Case Folding:** Mengubah semua teks menjadi huruf kecil.
 3.  **Normalisasi Singkatan/Slang:** Mengubah kata-kata tidak baku atau singkatan menjadi bentuk bakunya menggunakan kamus kustom. Contoh: 'dgn' menjadi 'dengan', 'tdk' menjadi 'tidak', 'good' menjadi 'bagus'.
-4.  **Penghapusan Tanda Baca, Angka, dan Karakter Khusus:** Membersihkan teks dari elemen non-alfabetik yang tidak relevan.
+4.  **Stopwords Removal:** Menghapus kata-kata umum yang tidak membawa makna sentimen signifikan (contoh: 'yang', 'dan'), dengan pengecualian kata-kata negasi (`tidak`, `bukan`) untuk menjaga makna sentimen.
 5.  **Tokenisasi:** Memecah setiap ulasan menjadi unit-unit kata (token).
-6.  **Stopwords Removal:** Menghapus kata-kata umum yang tidak membawa makna sentimen signifikan (contoh: 'yang', 'dan'), dengan pengecualian kata-kata negasi (`tidak`, `bukan`) untuk menjaga makna sentimen.
-7.  **Stemming:** Mengubah kata-kata berimbuhan menjadi kata dasar menggunakan pustaka Sastrawi untuk Bahasa Indonesia. Contoh: 'dicoba' menjadi 'coba', 'pengiriman' menjadi 'kirim'.
+6.  **Stemming:** Mengubah kata-kata berimbuhan menjadi kata dasar menggunakan pustaka Sastrawi untuk Bahasa Indonesia. Contoh: 'dicoba' menjadi 'coba', 'pengiriman' menjadi 'kirim'.
 
 ### Vektorisasi Fitur
 
@@ -55,7 +54,7 @@ Setelah pra-pemrosesan, teks diubah menjadi representasi numerik yang dapat dipa
 ### Model Machine Learning
 
 Tiga algoritma klasifikasi Machine Learning klasik diimplementasikan dan dilatih pada data yang sudah divetorisasi:
-1.  **Naive Bayes (Multinomial Naive Bayes):** Sebuah model probabilistik yang bekerja baik untuk klasifikasi teks.
+1.  ** Gaussian Naive Bayes:** Sebuah model probabilistik yang bekerja baik untuk klasifikasi teks.
 2.  **Logistic Regression:** Model linear yang sering digunakan sebagai *baseline* yang kuat dan memberikan probabilitas kelas.
 3.  **Support Vector Machine (LinearSVC):** Efektif dalam data berdimensi tinggi dan sering memberikan performa tinggi dalam klasifikasi teks.
 
@@ -65,9 +64,9 @@ Model-model dievaluasi menggunakan metrik seperti Akurasi, Precision, Recall, F1
 
 Berikut adalah ringkasan akurasi yang diperoleh untuk setiap model pada data pengujian:
 
--   **Naive Bayes:** 92%
--   **Logistic Regression:** 97%
--   **Support Vector Machine (SVM):** 97%
+-   **Gaussian Naive Bayes:** 84%
+-   **Logistic Regression:** 92%
+-   **Support Vector Machine (SVM):** 92%
 
 Berdasarkan hasil akurasi, model **Logistic Regression** dan **SVM** menunjukkan performa yang sangat kuat dan setara, melampaui Naive Bayes dalam mengklasifikasikan sentimen ulasan e-commerce pada dataset ini.
 
@@ -108,7 +107,3 @@ Proyek ini membutuhkan library Python berikut:
 -   `seaborn`
 -   `Sastrawi`
 -   `wordcloud`
-
-## Lisensi
-
-Proyek ini dilisensikan di bawah [MIT License](https://opensource.org/licenses/MIT) - lihat file [LICENSE](LICENSE) untuk detailnya.
