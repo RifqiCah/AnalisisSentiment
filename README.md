@@ -71,14 +71,17 @@ Untuk mendapatkan hasil yang valid dan andal, proses evaluasi dan optimasi model
 2.  **Optimasi Hyperparameter (Hyperparameter Tuning):** Untuk menemukan potensi maksimal dari setiap algoritma, dilakukan proses pencarian hyperparameter terbaik menggunakan **`GridSearchCV`**. `GridSearchCV` secara sistematis menguji berbagai kombinasi hyperparameter dan menggunakan skema K-Fold Cross-Validation secara internal untuk menentukan kombinasi mana yang menghasilkan skor akurasi rata-rata tertinggi.
 
 ### Kesimpulan Hasil
+Berikut adalah ringkasan akurasi yang diperoleh untuk setiap model pada data pengujian:
 
-Setelah melalui proses evaluasi dan optimasi yang ketat, berikut adalah rekapitulasi performa dari setiap model yang telah di-tuning:
+-   **Gaussian Naive Bayes:** 84%
+-   **Logistic Regression:** 90%
+-   **Support Vector Machine (SVM):** 92%
 
+Kemudian kami melakukan hyperparamter tuning pada model SVM yang menghasilkan:
+Skor di setiap lipatan: [0.8961039  0.91428571 0.9038961  0.92727273 0.89350649]
 | Model | Hyperparameter Terbaik | Akurasi Cross-Validated |
 | :--- | :--- | :--- |
 | **Support Vector Machine (SVM)** | `{'C': 1}` | **90.7%** |
-| **Logistic Regression** | `[Isi dengan param terbaik LR Anda]` | `[Isi dengan skor terbaik LR Anda]` |
-| **Gaussian Naive Bayes** | `[Isi dengan param terbaik NB Anda]`| `[Isi dengan skor terbaik NB Anda]` |
 
 Dari ketiga algoritma yang diuji, model **Support Vector Machine (SVM) menunjukkan performa yang paling unggul dan konsisten**.
 
